@@ -44,8 +44,7 @@
                 while (isNotValidInput)
                 {
                     userInputValue = Console.ReadLine();
-                    if (!string.IsNullOrWhiteSpace(userInputValue) && userInputValue.All(char.IsDigit) &&
-                        !(int.Parse(userInputValue) > documentLines && int.Parse(userInputValue) < 1))
+                    if (LineIsDeletable(documentLines, userInputValue))
                     {
                         isNotValidInput = false;
                         continue;
@@ -107,6 +106,12 @@
         static bool UserInputIsWrite(string userInput)
         {
             return writeKeywords.Contains(userInput);
+        }
+
+        static bool LineIsDeletable(int documentLines, string userInputValue)
+        {
+            return !string.IsNullOrWhiteSpace(userInputValue) && userInputValue.All(char.IsDigit) &&
+                   !(int.Parse(userInputValue) > documentLines || int.Parse(userInputValue) < 1);
         }
     }
 }
