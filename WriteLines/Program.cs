@@ -7,7 +7,7 @@
         private static List<string> deleteKeywords = new List<string> {"d","D","delete","DELETE"};
         private static string documentPath = "./document.txt";
 
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
             Console.WriteLine(
                 "Welcome in WriteLines!\nWhat do you want to do?\nRead (R) / Write (W) / Delete line (D):");
@@ -57,7 +57,7 @@
             }
         }
 
-        static void WriteDocumentLine(string line)
+        private static void WriteDocumentLine(string line)
         {
             if (!File.Exists(documentPath))
             {
@@ -66,7 +66,7 @@
             File.AppendAllText(documentPath, line + Environment.NewLine);
         }
 
-        static string ReadDocument()
+        private static string ReadDocument()
         {
             if (!File.Exists(documentPath))
             {
@@ -75,7 +75,7 @@
             return File.ReadAllText(documentPath);
         }
 
-        static void DeleteDocumentLine(int lineNumber)
+        private static void DeleteDocumentLine(int lineNumber)
         {
             if (!File.Exists(documentPath))
             {
@@ -86,29 +86,29 @@
             File.WriteAllLines(documentPath, documentLines);
         }
 
-        static bool UserInputIsInLists(string userInput)
+        private static bool UserInputIsInLists(string userInput)
         {
             return readKeywords.Contains(userInput) || deleteKeywords.Contains(userInput) ||
                    writeKeywords.Contains(userInput);
 
         }
 
-        static bool UserInputIsRead(string userInput)
+        private static bool UserInputIsRead(string userInput)
         {
             return readKeywords.Contains(userInput);
         }
 
-        static bool UserInputIsDelete(string userInput)
+        private static bool UserInputIsDelete(string userInput)
         {
             return deleteKeywords.Contains(userInput);
         }
 
-        static bool UserInputIsWrite(string userInput)
+        private static bool UserInputIsWrite(string userInput)
         {
             return writeKeywords.Contains(userInput);
         }
 
-        static bool LineIsDeletable(int documentLines, string userInputValue)
+        private static bool LineIsDeletable(int documentLines, string userInputValue)
         {
             return !string.IsNullOrWhiteSpace(userInputValue) && userInputValue.All(char.IsDigit) &&
                    !(int.Parse(userInputValue) > documentLines || int.Parse(userInputValue) < 1);
